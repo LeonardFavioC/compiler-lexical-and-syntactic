@@ -1,27 +1,29 @@
+# coding: utf-8
 
 import re
 import string
 import pandas as pd
 from lexicalAnalyzer import getTockens
 
-
+# Verificación de valores de entradas en la tabla de valores
 def parse(user_input,start_symbol,parsingTable):
 
 	#flag
 	flag = 0
 
-	#appending dollar to end of input
+	# appending dollar to end of input
+
 	user_input = user_input + "$"
 
 	stack = []
-	
+
 	stack.append("$")
 	stack.append(start_symbol)
 
 	input_len = len(user_input)
 	index = 0
 
-	
+
 	while len(stack) > 0:
 
 		#element at top of stack
@@ -36,8 +38,8 @@ def parse(user_input,start_symbol,parsingTable):
 
 		if top == current_input:
 			stack.pop()
-			index = index + 1	
-		else:	
+			index = index + 1
+		else:
 
 			#finding value for key in table
 			key = top , current_input
@@ -45,14 +47,14 @@ def parse(user_input,start_symbol,parsingTable):
 
 			#top of stack terminal => not accepted
 			if key not in parsingTable:
-				flag = 1		
+				flag = 1
 				break
 
 			value = parsingTable[key]
 			if value !='@':
 				value = value[::-1]
 				value = list(value)
-				
+
 				#poping top of stack
 				stack.pop()
 
@@ -60,7 +62,7 @@ def parse(user_input,start_symbol,parsingTable):
 				for element in value:
 					stack.append(element)
 			else:
-				stack.pop()		
+				stack.pop()
 
 	if flag == 0:
 		print ("Sintax accepted!")
@@ -68,7 +70,7 @@ def parse(user_input,start_symbol,parsingTable):
 		print ("Sintax not accepted!"	)
 
 
-
+# Dibujar la tabla de valores
 def ll1(follow, productions):
 	table = {}
 	for key in productions:
@@ -124,18 +126,18 @@ def follow(s, productions, ans):
 					else:
 						ans[s] = ans[s].union(first_of_next)
 	return ans
-
+# Metodo recursivo para calcular los primeros
 def first(s, productions):
 	c = s[0]
 	ans = set()
 	if c.isupper():
 		for st in productions[c]:
-			if st == '@' :				
+			if st == '@' :
 				if len(s)!=1 :
 					ans = ans.union( first(s[1:], productions) )
 				else :
 					ans = ans.union('@')
-			else :	
+			else :
 				f = first(st, productions)
 				ans = ans.union(x for x in f)
 	else:
@@ -166,16 +168,16 @@ if __name__=="__main__":
 			flag = 0
 			start = lhs
 		productions[lhs] = rhs
-	
+
 	print ('\nFirst\n')
 	for lhs in productions:
 		first_dict[lhs] = first(lhs, productions)
 	for f in first_dict:
 		print (str(f) + " : " + str(first_dict[f]))
 	print ("")
-	
+
 	print ('\nFollow\n')
-	
+
 	for lhs in productions:
 		follow_dict[lhs] = set()
 
@@ -186,7 +188,7 @@ if __name__=="__main__":
 
 	for lhs in productions:
 		follow_dict = follow(lhs, productions, follow_dict)
-	
+
 	for f in follow_dict:
 		print (str(f) + " : " + str(follow_dict[f]))
 

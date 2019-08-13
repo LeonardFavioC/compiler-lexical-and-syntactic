@@ -27,7 +27,7 @@ def automaton(word, current, response=None):
                 else:
                     continue
             else:
-                response = automaton(word[1:], current, response)                   
+                response = automaton(word[1:], current, response)
     return response
 
 #Fix please
@@ -56,7 +56,7 @@ def getSymbol(v, index):
         for n in listValues:
             if(i == index):
                 return n
-            i += 1    
+            i += 1
     return None
 
 def setData(values):
@@ -110,10 +110,10 @@ def readFile(name):
     except:
         return('Something went wrong when reading to the file')
         x.close()
-        
+# Gramatica para verificar si es número
 def isNum(n):
     try:
-        getTransitionTable('num.csv') 
+        getTransitionTable('num.csv')
 
         return automaton(n, 0)
 

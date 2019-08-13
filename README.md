@@ -77,6 +77,6 @@ Case 3:
 * Zhunaula Jonathan
 
 `Based`
-- https://github.com/sid24rane/LL1-parser/blob/
+- https://github.com/sid24rane/LL1-parser
 - https://github.com/gqroot/analizadorLexico
 

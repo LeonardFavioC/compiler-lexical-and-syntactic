@@ -1,5 +1,7 @@
-from num import isNum 
-from id import isId 
+# coding: utf-8
+
+from num import isNum
+from id import isId
 
 SPECIALCHAR = [ 'mod', 'pot', '+', '-', '*', '/', '(', ',', ')' ]
 
@@ -10,7 +12,7 @@ def readFile(name):
     except:
         return('Something went wrong when reading to the file')
         x.close()
-        
+
 def getTockens():
     try:
         txt = readFile('math.txt')
@@ -29,7 +31,7 @@ def getTockens():
                             sentence += 'i'
                         else:
                             sentence += 'u'
-                        stack=''      
+                        stack=''
                     sentence += char
                 else:
                     stack += char

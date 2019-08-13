@@ -13,6 +13,7 @@ transitions = []
 global finalStates
 finalStates = []
 
+# Verificar si es un identificador
 def automaton(word, current, response=None):
     if len(word)>0:
         for char in word:
@@ -27,7 +28,7 @@ def automaton(word, current, response=None):
                 else:
                     continue
             else:
-                response = automaton(word[1:], current, response)                   
+                response = automaton(word[1:], current, response)
     return response
 
 #Fix please
@@ -56,7 +57,7 @@ def getSymbol(v, index):
         for n in listValues:
             if(i == index):
                 return n
-            i += 1    
+            i += 1
     return None
 
 def setData(values):
@@ -113,7 +114,7 @@ def readFile(name):
 
 def isId(n):
     try:
-        getTransitionTable('id.csv') 
+        getTransitionTable('id.csv')
 
         return automaton(n, 0)
 
