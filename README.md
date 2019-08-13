@@ -20,6 +20,10 @@
 `Show implementation table`
 `Validate the syntax from the output of the lexico analyzer`
 
+### Prerequisites
+* python2.7
+* panda library
+
 ### Rules
 
 **The gramar are saved in grammar(productions)**
