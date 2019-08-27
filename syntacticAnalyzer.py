@@ -6,7 +6,7 @@ import pandas as pd
 from lexicalAnalyzer import getTockens
 
 # Verificación de valores de entradas en la tabla de valores
-def parse(user_input,start_symbol,parsingTable):
+def parse(user_input, start_symbol, parsingTable, id):
 
 	#flag
 	flag = 0
@@ -67,7 +67,7 @@ def parse(user_input,start_symbol,parsingTable):
 	if flag == 0:
 		print ("Sintax accepted!")
 	else:
-		print ("Sintax not accepted!"	)
+		print ("Sintax not accepted in line! " + str(id+1))
 
 
 # Dibujar la tabla de valores
@@ -195,7 +195,6 @@ if __name__=="__main__":
 	ll1Table = ll1(follow_dict, productions)
 
 	# parse("n+n*(p(n,n))*i",start,ll1Table)
-
-	for line in getTockens():
-		parse(line, start, ll1Table)
+	for idx, line in enumerate(getTockens()):
+		parse(line, start, ll1Table, idx)
 		print('\n')

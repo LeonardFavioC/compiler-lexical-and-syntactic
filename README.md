@@ -18,6 +18,7 @@
 ### Syntactic Analyzer
 ``` First and Follow Sets based of productions```
 `Show implementation table`
+
 `Validate the syntax from the output of the lexico analyzer`
 
 ### Prerequisites
